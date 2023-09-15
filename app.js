@@ -16,6 +16,55 @@ client.connect(function (err) {
     client.close();
 });
 
+//MONGOOSE
+const mongoose = require('mongoose');
+//connecting to DB
+mongoose.connect('mongodb://localhost:27017/DBname', { useNewUrlParser: true });
+//inserting into DB
+const fruitSchema = new mongoose.Schema({
+    name: String,
+    rating: Number,
+    review: String
+});
+
+const Fruit = mongoose.model("Fruit", fruitSchema);
+
+const apple = new Fruit({
+    name: "apple",
+    rating: 7,
+    review: " keeps doc away"
+})
+
+const orange = new Fruit({
+    name: "orange",
+    rating: 6,
+    review: "sweet"
+})
+
+Fruit.insertMany([apple, orange], function (err) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log("saved to fruitsDB")
+    }
+    mongoose.connect.close();
+});
+
+//reading from the database
+Fruit.find(function (err, fruitS) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        // console.log(fruitS)
+        fruitS.forEach(function (fruit) {
+            console.log(fruit.name);
+        });
+    }
+    mongoose.connect.close();
+});
+
 //ExpressJS, EJS, body-parser, lodash
 const express = require("express");
 const bodyParser = require("body-parser");
