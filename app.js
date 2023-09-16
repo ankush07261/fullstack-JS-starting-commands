@@ -21,10 +21,16 @@ const mongoose = require('mongoose');
 //connecting to DB
 mongoose.connect('mongodb://localhost:27017/DBname', { useNewUrlParser: true });
 //inserting into DB
-const NameSchema = new mongoose.Schema({
-    //Example
-    name: String,
-    rating: Number,
+const fruitSchema = new mongoose.Schema({
+    name: {                                      //mongoose data validation.
+        type: String,
+        required: [true,"name needed"]
+    },
+    rating: {               
+        type: Number,
+        min: 0,
+        max: 10
+    } ,
     review: String
 });
 
