@@ -21,45 +21,48 @@ const mongoose = require('mongoose');
 //connecting to DB
 mongoose.connect('mongodb://localhost:27017/DBname', { useNewUrlParser: true });
 //inserting into DB
-const fruitSchema = new mongoose.Schema({
+const NameSchema = new mongoose.Schema({
+    //Example
     name: String,
     rating: Number,
     review: String
 });
 
-const Fruit = mongoose.model("Fruit", fruitSchema);
+const Name = mongoose.model("Name", NameSchema);
 
-const apple = new Fruit({
+const element1 = new Name({
+    //Example matching with the NameSchema format
     name: "apple",
     rating: 7,
     review: " keeps doc away"
 })
 
-const orange = new Fruit({
+const element2 = new Name({
+    //Example matching with the NameSchema format
     name: "orange",
     rating: 6,
     review: "sweet"
 })
 
-Fruit.insertMany([apple, orange], function (err) {
+Fruit.insertMany([element1, element2], function (err) {
     if (err) {
         console.log(err);
     }
     else {
-        console.log("saved to fruitsDB")
+        console.log("")
     }
     mongoose.connect.close();
 });
 
 //reading from the database
-Fruit.find(function (err, fruitS) {
+Name.find(function (err, NAME) {
     if (err) {
         console.log(err);
     }
     else {
         // console.log(fruitS)
-        fruitS.forEach(function (fruit) {
-            console.log(fruit.name);
+        NAME.forEach(function (element) {
+            console.log(element.name);
         });
     }
     mongoose.connect.close();
