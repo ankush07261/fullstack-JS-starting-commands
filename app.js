@@ -18,9 +18,8 @@ client.connect(function (err) {
 
 //MONGOOSE
 const mongoose = require('mongoose');
-//connecting to DB
-mongoose.connect('mongodb://localhost:27017/DBname', { useNewUrlParser: true });
-//inserting into DB
+
+// in fruit.js
 const fruitSchema = new mongoose.Schema({
     name: {                                      //mongoose data validation.
         type: String,
@@ -33,46 +32,14 @@ const fruitSchema = new mongoose.Schema({
     } ,
     review: String
 });
+module.exports = mongoose.model("Fruit", fruitSchema);
 
-const Name = mongoose.model("Name", NameSchema);
+//in app.js
+//connecting to DB 
+mongoose.connect('mongodb://localhost:27017/DBname', { useNewUrlParser: true });
 
-const element1 = new Name({
-    //Example matching with the NameSchema format
-    name: "apple",
-    rating: 7,
-    review: " keeps doc away"
-})
+const Fruit = require("./fruit.js");
 
-const element2 = new Name({
-    //Example matching with the NameSchema format
-    name: "orange",
-    rating: 6,
-    review: "sweet"
-})
-
-Fruit.insertMany([element1, element2], function (err) {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log("")
-    }
-    mongoose.connect.close();
-});
-
-//reading from the database
-Name.find(function (err, NAME) {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        // console.log(fruitS)
-        NAME.forEach(function (element) {
-            console.log(element.name);
-        });
-    }
-    mongoose.connect.close();
-});
 
 //ExpressJS, EJS, body-parser, lodash
 const express = require("express");
