@@ -16,30 +16,7 @@ client.connect(function (err) {
     client.close();
 });
 
-//MONGOOSE
-const mongoose = require('mongoose');
-
-// in fruit.js
-const fruitSchema = new mongoose.Schema({
-    name: {                                      //mongoose data validation.
-        type: String,
-        required: [true,"name needed"]
-    },
-    rating: {               
-        type: Number,
-        min: 0,
-        max: 10
-    } ,
-    review: String
-});
-module.exports = mongoose.model("Fruit", fruitSchema);
-
-//in app.js
-//connecting to DB 
-mongoose.connect('mongodb://localhost:27017/DBname', { useNewUrlParser: true });
-
-const Fruit = require("./fruit.js");
-
+//MONGOOSE refer script.js and user.js
 
 //ExpressJS, EJS, body-parser, lodash
 const express = require("express");
