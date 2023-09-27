@@ -64,3 +64,12 @@ async function run() {
     console.log(person);    
 }
 run();
+
+//with EXPRESSJS/NODEJS, use the following:
+app.get("/", async(res,req){
+    //with await key word
+})
+
+app.post("/", async(res,req){
+    //with await key word
+})
