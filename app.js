@@ -1,7 +1,6 @@
 //for MongoDB & MONGOOSE refer script.js and user.js
 
 //ExpressJS, EJS, body-parser, lodash
-
 //importing modules
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -18,7 +17,6 @@ app.use(express.static("public"));
 app.get('/', (req, res) => {
   //res.render('pageName',{});
 })
-
 
 app.post('/', (req, res) => {
   //title = req.body.title;
