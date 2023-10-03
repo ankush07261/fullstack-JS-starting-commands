@@ -16,13 +16,18 @@ client.connect(function (err) {
 });
 
 //-------------------------MONGOOSE-------------------------
+//require mongoose
 const mongoose = require('mongoose')
+
+//connect to mongoose
 mongoose.connect('mongodb://127.0.0.1:27017/userDB',{
         useNewUrlParser: true,
         useUnifiedTopology: true
 }).then(() => {
     console.log('Connected')
 });
+
+//Importing the user schema from users.js
 const User = require("./users.js");
 
 async function run() {
